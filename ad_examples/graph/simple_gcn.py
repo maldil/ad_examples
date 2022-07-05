@@ -588,7 +588,7 @@ class SimpleGCN(object):
             (see self.fit() above) and the computation graph has been fully created.
         """
         D, iDroot = self.get_iDroot(A)
-        A_hat = np.dot(np.dot(iDroot, A), iDroot)
+        A_hat = np.linalg.multi_dot([iDroot, A, iDroot])
         self.fit_x = x
         self.fit_y = y
         self.fit_A = A
